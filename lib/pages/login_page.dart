@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:login_app_c_2/controllers/login_controller.dart';
+//import 'package:login_app_c_2/controllers/login_controller.dart';
+import 'package:login_app_c_2/pages/home_page.dart';
 
 class LoginPage extends StatelessWidget {
 //DECLARACION DE LA VARIABLES
@@ -48,7 +49,11 @@ class LoginPage extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             GestureDetector(
-              onTap: login(userController.text, passwordController.text),
+              //onTap: login(userController.text, passwordController.text),
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => HomePage()));
+              },
               child: const Text(
                 'Ingresar',
                 style: TextStyle(
