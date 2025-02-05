@@ -1,14 +1,29 @@
 import 'package:flutter/material.dart';
 
-login(String email, String password) {
-  debugPrint('desde login');
-  if (password.length < 6) {
-    debugPrint('Password must be at least 6 characters');
-    return;
-  }
-  if (email == 'admin@email.com' && password == 'password') {
-    debugPrint('Login success');
+import 'dart:convert';
+
+import 'package:http/http.dart' as http;
+
+login(String name, String email, String password) async {
+  //const String baseUrl = 'http://localhost:8000/api/register'; //WEB
+  const String baseUrl = 'http://10.0.2.2:8000/api/register';
+
+  var client = http.Client();
+  var url = Uri.parse(baseUrl);
+  var headers = {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+    'cache-control': 'no-cache',
+  };
+
+  var body = json.encode({'name': name, 'email': email, 'password': password});
+
+  var response = await client.post(url, headers: headers, body: body);
+  if (response.statusCode == 200) {
+    debugPrint(response.body);
   } else {
-    debugPrint('Login failed');
+    debugPrint('Error');
   }
+
+  //WEB
 }

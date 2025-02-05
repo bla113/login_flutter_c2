@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:login_app_c_2/controllers/login_controller.dart';
-import 'package:login_app_c_2/pages/register_page.dart';
 //import 'package:login_app_c_2/controllers/login_controller.dart';
 //import 'package:login_app_c_2/pages/home_page.dart';
 
-class LoginPage extends StatelessWidget {
+class RegisterPage extends StatelessWidget {
 //DECLARACION DE LA VARIABLES
-  final userController = TextEditingController();
+  final nameController = TextEditingController();
+  final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
-  LoginPage({super.key});
+  RegisterPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,17 @@ class LoginPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: TextField(
-                controller: userController,
+                controller: nameController,
+                decoration: const InputDecoration(
+                  labelText: 'Email',
+                  border: OutlineInputBorder(),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: TextField(
+                controller: emailController,
                 decoration: const InputDecoration(
                   labelText: 'Email',
                   border: OutlineInputBorder(),
@@ -53,7 +63,8 @@ class LoginPage extends StatelessWidget {
             GestureDetector(
               //onTap: login(userController.text, passwordController.text),
               onTap: () {
-                login('admin', 'admin', 'password');
+                login(nameController.text, emailController.text,
+                    passwordController.text);
                 // Navigator.push(context,
                 //     MaterialPageRoute(builder: (context) => HomePage()));
               },
@@ -71,12 +82,7 @@ class LoginPage extends StatelessWidget {
               children: [
                 const Text('Don\'t have an account?'),
                 TextButton(
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => RegisterPage()));
-                  },
+                  onPressed: () {},
                   child: const Text('Register'),
                 ),
               ],
