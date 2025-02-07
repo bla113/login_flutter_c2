@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:login_app_c_2/controllers/login_controller.dart';
+import 'package:login_app_c_2/controllers/register_controller.dart';
+import 'package:login_app_c_2/pages/home_page.dart';
 import 'package:login_app_c_2/pages/register_page.dart';
 //import 'package:login_app_c_2/controllers/login_controller.dart';
 //import 'package:login_app_c_2/pages/home_page.dart';
 
 class LoginPage extends StatelessWidget {
 //DECLARACION DE LA VARIABLES
-  final userController = TextEditingController();
+  final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
   LoginPage({super.key});
@@ -31,7 +33,7 @@ class LoginPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: TextField(
-                controller: userController,
+                controller: emailController,
                 decoration: const InputDecoration(
                   labelText: 'Email',
                   border: OutlineInputBorder(),
@@ -52,10 +54,16 @@ class LoginPage extends StatelessWidget {
             const SizedBox(height: 20),
             GestureDetector(
               //onTap: login(userController.text, passwordController.text),
-              onTap: () {
-                login('admin', 'admin', 'password');
-                // Navigator.push(context,
-                //     MaterialPageRoute(builder: (context) => HomePage()));
+              onTap: () async {
+                final response =
+                    await login(emailController.text, passwordController.text);
+
+                // debugPrint(response);
+                if (response == 200) {
+                  // ignore: use_build_context_synchronously
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => HomePage()));
+                }
               },
               child: const Text(
                 'Ingresar',

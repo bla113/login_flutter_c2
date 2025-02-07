@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:login_app_c_2/controllers/login_controller.dart';
+import 'package:login_app_c_2/controllers/register_controller.dart';
 //import 'package:login_app_c_2/controllers/login_controller.dart';
 //import 'package:login_app_c_2/pages/home_page.dart';
 
@@ -63,7 +63,7 @@ class RegisterPage extends StatelessWidget {
             GestureDetector(
               //onTap: login(userController.text, passwordController.text),
               onTap: () {
-                login(nameController.text, emailController.text,
+                register(nameController.text, emailController.text,
                     passwordController.text);
                 // Navigator.push(context,
                 //     MaterialPageRoute(builder: (context) => HomePage()));
